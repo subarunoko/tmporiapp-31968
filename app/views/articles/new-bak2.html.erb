@@ -1,0 +1,46 @@
+<div class="allwrapper">
+
+  <%= render "shared/new_header" %>
+
+  <div class="new-main-container">
+    <%#= render "shared/main_sub" %>
+    <%= form_with model: @article, url: articles_path, local: true do |f| %>
+
+    <%# エラー発生時の表示 %>
+    <%= render 'shared/error_messages', model: @article %>
+
+    <div class="new-top-content">
+      <%= f.text_field :title, autofocus: true, class:"article-title", placeholder:"タイトル" %>
+      <%#= f.text_field :title, autofocus: true, autocomplete: "title", placeholder:"タイトル" %>
+    </div>
+    <div class="new-mid-content">
+      <p>タグ付けを実装するスペース</p>
+      <%#= f.label "お題"%>
+      <%#= f.text_field :title, autofocus: true, autocomplete: "title" %>
+    </div>
+    <div class="new-bottom-out-content">
+      <div class="new-bottom-in-content">
+        <div class="new-main-left-content">
+
+          <%#= javascript_pack_tag 'article' %>
+
+          <%#= f.label "本文" %>
+          <%#= f.text_area :body %>
+          <%#= f.label "本文" %>
+          <%= f.text_area :body, { id: "editor", placeholder: "本文" } %>
+        </div>
+      </div>     
+    </div>
+    <div class="new-footer-content">
+        <div class="new-footer-left-content">
+        </div>
+        <div class="new-footer-right-content">
+          <%= f.submit "投稿する", class:"new-article-submit-btn" %>
+          <% end %>
+        </div>
+    </div>      
+  </div>
+
+  <%= render "shared/footer" %>
+
+</div>

@@ -1,0 +1,22 @@
+<div class="allwrapper">
+
+  <%= render "shared/header" %>
+
+  <div class="main-container">
+    <%= render "shared/main_sub" %>
+    <div class="main-content">
+    article show.html<br>
+    記事表示画面<br>
+    
+    <%= @article.user.nickname %>
+    <br>
+    <%= link_to "編集する", edit_article_path(params[:id]), class:"hoge" %>
+    <br>
+    <%= link_to "トップページへ戻る", "/", class:"hoge" %>
+
+    </div>
+  </div>
+
+  <%= render "shared/footer" %>
+
+</div>

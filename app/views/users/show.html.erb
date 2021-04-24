@@ -1,0 +1,81 @@
+<div class="allwrapper">
+
+  <%= render "shared/new_header" %>
+
+  <div class="users-show-main-container">
+    <%= render "shared/main_sub" %>
+    <div class="users-show-out-content">
+      <div class="users-show-in-content">
+        <div class="users-show-main-left-content">
+          <div class="users-show-main-left-up-content">
+            <h5>プロフィール画面</h5>
+            <%= image_tag "no-image.png", class:"user-img" %>
+          </div>
+
+          <div class="users-show-main-left-first-content">
+            <h4><%= @user.nickname %></h4>
+          </div>
+
+          <div class="users-show-main-left-second-content">
+          <% if user_signed_in? %>
+              <% if current_user.id != @user.id %>
+                <div class="user-edit-btn">
+                  <%= render "relationships/follow_button", user: @user %>
+                </div>
+              <% else %>
+                <div class="user-edit-btn">
+                  <%#= link_to "編集する", edit_user_path(params[:id]), class: 'user-edit-btn-text' %>
+                  <%= link_to "編集する", edit_user_registration_path, class: 'user-edit-btn-text' %>
+                </div>
+              <% end %>
+          <% end %>
+          </div>
+
+          <div class="users-show-main-left-third-content">
+          <h6>＊プロフィール説明＊</h6>
+          </div>
+
+          <div class="users-show-main-left-under-content">
+            <table>  
+              <tr>
+                <td>投稿</td><td><%= @article.count %> </td>
+              </tr>
+
+              <tr>
+                <td>いいね</td><td> <%= @like.count %> </td>
+              </tr>
+
+              <tr>
+                <td>コメント</td><td>0</td>
+              </tr>
+            
+              <tr>
+                <td>フォロー</td><td><%= @user.followings.count %></td>
+              </tr>
+
+              <tr>
+                <td>フォロワー</td><td><%= @user.followers.count %></td>
+              </tr>
+            
+            </table>
+ 
+
+          </div>
+
+
+
+
+
+
+        </div>
+        <div class="users-show-main-right-content">
+          789 <br>
+
+        </div>
+      </div> 
+    </div>
+  </div>
+
+  <%= render "shared/footer" %>
+
+</div>

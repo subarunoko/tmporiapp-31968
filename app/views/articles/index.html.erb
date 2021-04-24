@@ -1,0 +1,58 @@
+<div class="allwrapper">
+
+  <%= render "shared/header" %>
+  
+  <% unless @articles.present? %>
+    <div class="main-container">
+      <%= render "shared/main_sub" %>
+      <div class="main-content">
+        <div class="upper-nil-content">
+          <h5> ■ 記事フィード </h5>
+          <p>トレンド</p>
+        </div>
+        <div class="under-nil-content">
+          <h5> &nbsp; </h5>
+          <h5> ※投稿はありません </h5>
+        </div>        
+      </div>  
+    </div>
+  <% else %>
+    <div class="main-container">
+      <%= render "shared/main_sub" %>
+      <div class="main-content">
+        <div class="upper-content">
+          <h5> ■ 記事フィード </h5>
+          <p>トレンド</p>
+        </div>
+        <div class="under-content">
+          <% @articles.each do |article| %>
+          <ul class='article-ul'>
+            <li class='article-btn'>
+              <%= link_to(article_path(article), class: 'article-btn-main-text') do %>
+                <span class='article-btn-main-text'><%= article.title %></span>
+              <% end %>
+              <h6><span>投稿者:</span>
+              <%= link_to(user_path(article.user), class: 'article-btn-sub-text') do %>        
+                <span class='article-btn-sub-text'><%= article.user.nickname %></span>
+              <% end %> &nbsp;
+              <%= article.created_at.to_s(:datetime) %></h6>
+              <div class="article-icon">
+                <div class='icon-btn'>
+                  <%= image_tag "comment2.png", class:"comment-icon" %>
+                  <span class='icon-count'>0</span>
+                </div>
+                <div class='icon-btn', id="like-btn-<% article.id %>" >
+                  <%= render partial: "likes/like", locals: { article: article } %>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <% end %>
+        </div>
+      </div>  
+    </div>
+  <% end %>
+
+  <%= render "shared/footer" %>
+
+</div>
